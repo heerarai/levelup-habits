@@ -23,49 +23,6 @@ Calories use the Mifflin-St Jeor formula and never go below 1,500 kcal. For anyo
 
 ---
 
-## Setup (about 15 minutes)
-
-You need [Node.js 20+](https://nodejs.org) and a Google account.
-
-### 1. Install
-```bash
-npm install
-cp .env.example .env
-```
-
-### 2. Firebase
-1. Go to the [Firebase console](https://console.firebase.google.com) → **Add project** (Google Analytics is optional).
-2. **Build → Authentication → Get started → Sign-in method → Google → Enable → Save.**
-3. **Build → Firestore Database → Create database** → pick a location → start in **production mode**.
-4. In Firestore, open the **Rules** tab, paste in the contents of `firestore.rules`, and click **Publish**. This ensures each person can only see their own data.
-5. **Project settings (⚙️) → Your apps → Web (`</>`)** → register an app → copy the config values into `.env` (`VITE_FIREBASE_API_KEY`, etc.).
-
-### 3. Run it
-```bash
-npm run dev
-```
-Open http://localhost:5173.
-
----
-
-## Put it on GitHub
-```bash
-git init
-git add .
-git commit -m "LevelUp habit tracker"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/levelup-habits.git
-git push -u origin main
-```
-`.env` is in `.gitignore`, so your keys won't be uploaded. Double-check before pushing.
-
-## Deploy as a web app (Vercel, free)
-1. Sign in at [vercel.com](https://vercel.com) with GitHub → **Add New → Project** → import your repo. Vite is detected automatically.
-2. Under **Environment Variables**, add every variable from your `.env`.
-3. Click **Deploy**.
-4. Copy your new domain (e.g. `levelup-habits.vercel.app`) into **Firebase → Authentication → Settings → Authorized domains**, or Google sign-in will be blocked there.
-
-After that, every `git push` redeploys automatically.
 
 ## Project structure
 ```
@@ -79,9 +36,3 @@ src/pages/                Landing, Home, Plans, Challenges, Dashboard, Profile
 firestore.rules           Database security rules
 ```
 
-## Troubleshooting
-- **"Firebase isn't configured yet":** `.env` is missing values. Restart `npm run dev` after editing it.
-- **Sign-in popup closes or errors:** allow pop-ups, and make sure your domain is in Firebase's authorized domains.
-- **"Missing or insufficient permissions":** the Firestore rules weren't published (Setup step 2.4).
-
-*Plans are general guidance, not medical advice.*
