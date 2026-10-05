@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fredoka", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Nunito", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --color-ink: #141026;
+  --color-grape: #7c3aed;
+  --color-plum: #9333ea;
+  --color-berry: #db2777;
+  --color-ember: #ea580c;
+}
+
+html { -webkit-tap-highlight-color: transparent; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(40rem 30rem at 0% 20%, #efe4ff 0%, transparent 60%),
+    radial-gradient(40rem 30rem at 100% 30%, #fde4f1 0%, transparent 60%),
+    radial-gradient(50rem 30rem at 60% 110%, #ffe8d6 0%, transparent 60%),
+    #faf7fd;
+  background-attachment: fixed;
+}
+
+h1, h2, h3, .font-display { font-family: var(--font-display); }
+
+:focus-visible { outline: 3px solid #a855f7; outline-offset: 2px; border-radius: 10px; }
+
+@utility card {
+  @apply rounded-3xl border border-white/70 bg-white/85 p-6 shadow-[0_8px_30px_-12px_rgba(91,33,182,0.18)] backdrop-blur;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-grape text-white shadow-md shadow-violet-300/50 hover:bg-plum;
+}
+@utility btn-gradient {
+  @apply btn bg-gradient-to-r from-plum to-berry text-white shadow-md shadow-pink-300/50 hover:brightness-110;
+}
+@utility btn-outline {
+  @apply btn border border-violet-200 bg-white text-ink hover:bg-violet-50;
+}
+@utility input {
+  @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base outline-none transition placeholder:text-slate-400 focus:border-violet-400 focus:ring-4 focus:ring-violet-100;
+}
+@utility label {
+  @apply mb-2 block text-sm font-bold text-slate-700;
+}
+@utility stat-gradient-purple { @apply bg-gradient-to-br from-violet-500 to-purple-700; }
+@utility stat-gradient-orange { @apply bg-gradient-to-br from-orange-500 to-orange-700; }
+@utility stat-gradient-pink { @apply bg-gradient-to-br from-pink-500 to-rose-700; }
+
+@keyframes pop {
+  0% { transform: scale(0.96); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop { animation: pop 180ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
